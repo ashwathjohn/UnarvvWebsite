@@ -18,8 +18,8 @@ const highlights = [
   },
   {
     icon: Users,
-    value: "Together",
-    label: "One Youth Movement",
+    value: "2 Days",
+    label: "Youth Convention",
   },
 ];
 

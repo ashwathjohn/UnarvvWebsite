@@ -25,13 +25,9 @@ const faqs = [
   {
     question: "How will I receive my pass?",
     answer:
-      "After successful payment verification, your convention pass will be generated and a confirmation will also be sent to your registered email address.",
+      "After successful payment verification, your convention pass will be generated and you get your pass by entering email and phone no in My Pass section.",
   },
-  {
-    question: "When does registration close?",
-    answer:
-      "The registration closing date will be announced by the organizing team.",
-  },
+
 ];
 
 function FAQ() {

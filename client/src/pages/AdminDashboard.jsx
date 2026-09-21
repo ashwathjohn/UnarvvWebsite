@@ -487,132 +487,255 @@ function AdminDashboard() {
           ADMIN HEADER
       =============================================================== */}
 
-      <header className="sticky top-0 z-40 border-b border-white/10 bg-[var(--red)]">
+     {/* ==============================================================
+    ADMIN HEADER
+=============================================================== */}
 
-        <div className="container-custom flex min-h-[76px] items-center justify-between gap-4">
+<header
+  className="
+    sticky
+    top-0
+    z-40
+    border-b
+    border-[var(--red)]/15
+    bg-[#D89A00]
+    shadow-sm
+  "
+>
+  <div className="container-custom flex min-h-[76px] items-center justify-between gap-4">
 
-          {/* BRAND */}
+    {/* ============================================================
+        BRAND
+    ============================================================= */}
 
-          <Link
-            to="/admin/dashboard"
-            className="flex min-w-0 items-center gap-3"
-          >
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--cream)] p-1.5">
+    <Link
+      to="/admin/dashboard"
+      className="group flex min-w-0 items-center gap-3"
+    >
+      {/* LOGO */}
 
-              <img
-                src={logo}
-                alt="UNARVV '26"
-                className="h-full w-full object-contain"
-              />
 
-            </div>
+    <img
+      src={logo}
+      alt="UNARVV '26 Logo"
+      className="
+        h-[52px]
+        w-[52px]
+        shrink-0
+        object-contain
+        transition-transform
+        duration-300
+        group-hover:scale-105
+        min-[380px]:h-[56px]
+        min-[380px]:w-[56px]
+        sm:h-[66px]
+        sm:w-[66px]
+      "
+    />
 
-            <div className="min-w-0">
 
-              <p className="truncate text-lg font-black uppercase leading-none text-[var(--cream)] sm:text-xl">
-                UNARVV '26
-              </p>
+      {/* BRAND TEXT */}
 
-              <p className="mt-1 text-[8px] font-black uppercase tracking-[0.18em] text-[var(--gold)] sm:text-[9px]">
-                Admin Panel
-              </p>
+      <div className="min-w-0">
 
-            </div>
+        <p
+          className="
+            truncate
+            text-lg
+            font-black
+            uppercase
+            leading-none
+            text-[var(--red)]
+            sm:text-xl
+          "
+        >
+          UNARVV '26
+        </p>
 
-          </Link>
+        <p
+          className="
+            mt-1
+            text-[8px]
+            font-black
+            uppercase
+            tracking-[0.18em]
+            text-[var(--cream)]
+            sm:text-[9px]
+          "
+        >
+          Admin Panel
+        </p>
 
-          {/* DESKTOP ACTIONS */}
+      </div>
 
-          <div className="hidden items-center gap-2 md:flex">
+    </Link>
 
-            <Link
-              to="/"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-white/25 px-4 py-2.5 text-[10px] font-black uppercase tracking-[0.08em] text-[var(--cream)] transition hover:bg-[var(--cream)] hover:text-[var(--red)]"
-            >
-              <ExternalLink
-                size={14}
-              />
+    {/* ============================================================
+        DESKTOP ACTIONS
+    ============================================================= */}
 
-              View Site
-            </Link>
+    <div className="hidden items-center gap-2 md:flex">
 
-            <button
-              type="button"
-              onClick={
-                handleExport
-              }
-              disabled={
-                exporting
-              }
-              className="inline-flex items-center gap-2 rounded-full bg-[var(--gold)] px-4 py-2.5 text-[10px] font-black uppercase tracking-[0.08em] text-[var(--red)] transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-60"
-            >
-              {exporting ? (
-                <LoaderCircle
-                  size={14}
-                  className="animate-spin"
-                />
-              ) : (
-                <Download
-                  size={14}
-                />
-              )}
+      {/* VIEW SITE */}
 
-              {exporting
-                ? "Exporting..."
-                : "Export CSV"}
-            </button>
+      <Link
+        to="/"
+        target="_blank"
+        rel="noreferrer"
+        className="
+          inline-flex
+          items-center
+          gap-2
+          rounded-full
+          border
+          border-[var(--red)]/40
+          bg-transparent
+          px-4
+          py-2.5
+          text-[10px]
+          font-black
+          uppercase
+          tracking-[0.08em]
+          text-[var(--red)]
+          transition-all
+          duration-200
+          hover:border-[var(--red)]
+          hover:bg-[var(--red)]
+          hover:text-[var(--cream)]
+        "
+      >
+        <ExternalLink size={14} />
 
-            <button
-              type="button"
-              onClick={
-                handleLogout
-              }
-              disabled={
-                loggingOut
-              }
-              className="inline-flex items-center gap-2 rounded-full border border-white/25 px-4 py-2.5 text-[10px] font-black uppercase tracking-[0.08em] text-[var(--cream)] transition hover:bg-[var(--cream)] hover:text-[var(--red)] disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              {loggingOut ? (
-                <LoaderCircle
-                  size={14}
-                  className="animate-spin"
-                />
-              ) : (
-                <LogOut
-                  size={14}
-                />
-              )}
+        View Site
+      </Link>
 
-              Logout
-            </button>
+      {/* EXPORT CSV */}
 
-          </div>
+      <button
+        type="button"
+        onClick={handleExport}
+        disabled={exporting}
+        className="
+          inline-flex
+          items-center
+          gap-2
+          rounded-full
+          bg-[var(--red)]
+          px-4
+          py-2.5
+          text-[10px]
+          font-black
+          uppercase
+          tracking-[0.08em]
+          text-[var(--cream)]
+          transition-all
+          duration-200
+          hover:bg-[var(--red-dark)]
+          hover:shadow-md
+          disabled:cursor-not-allowed
+          disabled:opacity-60
+        "
+      >
+        {exporting ? (
+          <LoaderCircle
+            size={14}
+            className="animate-spin"
+          />
+        ) : (
+          <Download size={14} />
+        )}
 
-          {/* MOBILE LOGOUT */}
+        {exporting
+          ? "Exporting..."
+          : "Export CSV"}
+      </button>
 
-          <button
-            type="button"
-            onClick={handleLogout}
-            disabled={loggingOut}
-            aria-label="Logout"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/25 text-[var(--cream)] md:hidden"
-          >
-            {loggingOut ? (
-              <LoaderCircle
-                size={16}
-                className="animate-spin"
-              />
-            ) : (
-              <LogOut size={16} />
-            )}
-          </button>
+      {/* LOGOUT */}
 
-        </div>
+      <button
+        type="button"
+        onClick={handleLogout}
+        disabled={loggingOut}
+        className="
+          inline-flex
+          items-center
+          gap-2
+          rounded-full
+          border
+          border-[var(--cream)]/70
+          bg-[var(--cream)]/10
+          px-4
+          py-2.5
+          text-[10px]
+          font-black
+          uppercase
+          tracking-[0.08em]
+          text-[var(--cream)]
+          transition-all
+          duration-200
+          hover:border-[var(--red)]
+          hover:bg-[var(--cream)]
+          hover:text-[var(--red)]
+          disabled:cursor-not-allowed
+          disabled:opacity-50
+        "
+      >
+        {loggingOut ? (
+          <LoaderCircle
+            size={14}
+            className="animate-spin"
+          />
+        ) : (
+          <LogOut size={14} />
+        )}
 
-      </header>
+        Logout
+      </button>
 
+    </div>
+
+    {/* ============================================================
+        MOBILE LOGOUT
+    ============================================================= */}
+
+    <button
+      type="button"
+      onClick={handleLogout}
+      disabled={loggingOut}
+      aria-label="Logout"
+      className="
+        flex
+        h-10
+        w-10
+        shrink-0
+        items-center
+        justify-center
+        rounded-full
+        border
+        border-[var(--red)]/40
+        text-[var(--red)]
+        transition-all
+        duration-200
+        hover:border-[var(--red)]
+        hover:bg-[var(--red)]
+        hover:text-[var(--cream)]
+        disabled:cursor-not-allowed
+        disabled:opacity-50
+        md:hidden
+      "
+    >
+      {loggingOut ? (
+        <LoaderCircle
+          size={16}
+          className="animate-spin"
+        />
+      ) : (
+        <LogOut size={16} />
+      )}
+    </button>
+
+  </div>
+</header>
       {/* ==============================================================
           DASHBOARD
       =============================================================== */}

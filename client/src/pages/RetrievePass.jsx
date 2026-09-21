@@ -7,6 +7,9 @@ import {
   Ticket,
 } from "lucide-react";
 import { toast } from "react-toastify";
+import ParticipantNavbar from "../components/common/ParticipantNavbar";
+
+
 
 import api from "../services/api";
 
@@ -125,6 +128,10 @@ function RetrievePass() {
   };
 
   return (
+    <div className="min-h-screen bg-[var(--cream)]">
+
+      <ParticipantNavbar />
+  
     <main className="flex min-h-screen items-center justify-center bg-[var(--cream)] px-4 py-12">
       <div className="w-full max-w-lg">
 
@@ -259,6 +266,8 @@ function RetrievePass() {
         </div>
       </div>
     </main>
+        
+    </div>
   );
 }
 

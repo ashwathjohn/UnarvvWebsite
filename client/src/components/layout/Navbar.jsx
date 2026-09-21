@@ -68,32 +68,80 @@ function Navbar() {
             BRAND
         =============================================================== */}
 
-        <Link
-          to="/"
-          onClick={closeMenu}
-          className="group flex shrink-0 items-center gap-3 sm:gap-4"
-          aria-label="UNARVV '26 Home"
-        >
-          {/* Logo */}
+       {/* ==============================================================
+    BRAND
+=============================================================== */}
 
-          <img
-            src={logo}
-            alt="UNARVV '26 Logo"
-            className="h-[58px] w-[58px] object-contain transition-transform duration-300 group-hover:scale-105 sm:h-[66px] sm:w-[66px]"
-          />
+<Link
+  to="/"
+  onClick={closeMenu}
+  className="group flex min-w-0 shrink-0 items-center gap-2.5 sm:gap-4"
+  aria-label="UNARVV '26 Home"
+>
+  {/* Logo */}
 
-          {/* Wordmark */}
+  <img
+    src={logo}
+    alt="UNARVV '26 Logo"
+    className="
+      h-[52px]
+      w-[52px]
+      shrink-0
+      object-contain
+      transition-transform
+      duration-300
+      group-hover:scale-105
+      min-[380px]:h-[56px]
+      min-[380px]:w-[56px]
+      sm:h-[66px]
+      sm:w-[66px]
+    "
+  />
 
-          <div className="flex flex-col">
-            <span className="text-[22px] font-black uppercase leading-none tracking-[-0.045em] text-[var(--red)] sm:text-[26px]">
-              UNARVV '26
-            </span>
+  {/* Wordmark */}
 
-            <span className="mt-[5px] hidden text-[8px] font-extrabold uppercase tracking-[0.18em] text-[var(--gold-dark)] min-[430px]:block sm:text-[9px]">
-              Refine • Renew • Reborn
-            </span>
-          </div>
-        </Link>
+  <div className="flex min-w-0 flex-col">
+    <span
+      className="
+        whitespace-nowrap
+        text-[19px]
+        font-black
+        uppercase
+        leading-none
+        tracking-[-0.045em]
+        text-[var(--red)]
+        min-[380px]:text-[21px]
+        sm:text-[26px]
+      "
+    >
+      UNARVV '26
+    </span>
+
+    <span
+      className="
+        mt-[4px]
+        whitespace-nowrap
+        text-[6.5px]
+        font-extrabold
+        uppercase
+        leading-none
+        tracking-[0.10em]
+        text-[var(--gold)]
+        min-[380px]:text-[7px]
+        min-[380px]:tracking-[0.13em]
+        sm:mt-[5px]
+        sm:text-[9px]
+        sm:tracking-[0.18em]
+      "
+    >
+      Refine
+      <span className="mx-1 text-[var(--red)]">•</span>
+      Renew
+      <span className="mx-1 text-[var(--red)]">•</span>
+      Reborn
+    </span>
+  </div>
+</Link>
 
         {/* ==============================================================
             DESKTOP NAVIGATION

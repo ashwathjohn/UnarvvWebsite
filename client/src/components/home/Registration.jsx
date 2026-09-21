@@ -1,18 +1,34 @@
-import { useState } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+
 import {
   useNavigate,
   Link,
 } from "react-router-dom";
+
 import {
   ArrowRight,
+  Check,
+  ChevronDown,
   LoaderCircle,
+  Search,
   ShieldCheck,
   TicketCheck,
 } from "lucide-react";
+
 import { toast } from "react-toastify";
 
 import api from "../../services/api";
 import { loadRazorpayScript } from "../../utils/loadRazorpay";
+
+/*
+|--------------------------------------------------------------------------
+| INITIAL FORM
+|--------------------------------------------------------------------------
+*/
 
 const initialForm = {
   fullName: "",
@@ -22,14 +38,171 @@ const initialForm = {
   jerseySize: "",
 };
 
+/*
+|--------------------------------------------------------------------------
+| PARISHES
+|--------------------------------------------------------------------------
+*/
+
+const PARISHES = [
+  "Addahole",
+  "Ajekar",
+  "Ajiri",
+  "Arla",
+  "Arasinamakki",
+  "Bajagoli",
+  "Banavara",
+  "Bangady",
+  "Battial",
+  "Belthangady",
+  "Bolminar",
+  "Devagiri",
+  "Dharmasthala",
+  "Gandibagilu",
+  "Gonikoppal",
+  "Guthigar",
+  "Hanchikad",
+  "Hebri",
+  "Heggala",
+  "Hoskote",
+  "Ichilampady",
+  "Jadkal",
+  "Kalenja",
+  "Kalmakki",
+  "Kanchal",
+  "Kankanady",
+  "Kattipalla",
+  "Kervashe",
+  "Kuthlur",
+  "Kutrupady",
+  "Maddody",
+  "Mala-Chowki",
+  "Manipal",
+  "Mantrady",
+  "Mardala",
+  "Moorje",
+  "Mudur",
+  "Mundaje",
+  "Murnad",
+  "Navoor",
+  "Nellyady",
+  "Nettana",
+  "Padavu",
+  "Sampaje",
+  "Shirady",
+  "Shirlal",
+  "Shirur",
+  "Siddapura(Kodagu)",
+  "Siddapura(Kundapura)",
+  "Sullia",
+  "Thottathady",
+  "Udane",
+  "Ujire",
+  "Venur",
+  "Yellukochi",
+];
+
 function Registration() {
   const navigate = useNavigate();
+
+  /*
+  |--------------------------------------------------------------------------
+  | FORM STATE
+  |--------------------------------------------------------------------------
+  */
 
   const [form, setForm] =
     useState(initialForm);
 
   const [loading, setLoading] =
     useState(false);
+
+  /*
+  |--------------------------------------------------------------------------
+  | PARISH DROPDOWN STATE
+  |--------------------------------------------------------------------------
+  */
+
+  const [
+    parishOpen,
+    setParishOpen,
+  ] = useState(false);
+
+  const [
+    parishSearch,
+    setParishSearch,
+  ] = useState("");
+
+  const parishRef = useRef(null);
+
+  /*
+  |--------------------------------------------------------------------------
+  | FILTER PARISHES
+  |--------------------------------------------------------------------------
+  */
+
+  const filteredParishes =
+    PARISHES.filter((parish) =>
+      parish
+        .toLowerCase()
+        .includes(
+          parishSearch
+            .trim()
+            .toLowerCase()
+        )
+    );
+
+  /*
+  |--------------------------------------------------------------------------
+  | CLOSE PARISH DROPDOWN ON OUTSIDE CLICK
+  |--------------------------------------------------------------------------
+  */
+
+  useEffect(() => {
+    const handleOutsideClick = (
+      event
+    ) => {
+      if (
+        parishRef.current &&
+        !parishRef.current.contains(
+          event.target
+        )
+      ) {
+        setParishOpen(false);
+        setParishSearch("");
+      }
+    };
+
+    document.addEventListener(
+      "mousedown",
+      handleOutsideClick
+    );
+
+    return () => {
+      document.removeEventListener(
+        "mousedown",
+        handleOutsideClick
+      );
+    };
+  }, []);
+
+  /*
+  |--------------------------------------------------------------------------
+  | HANDLE PARISH SELECTION
+  |--------------------------------------------------------------------------
+  */
+
+  const handleParishSelect = (
+    parish
+  ) => {
+    setForm((prev) => ({
+      ...prev,
+      parish,
+    }));
+
+    setParishOpen(false);
+    setParishSearch("");
+  };
 
   /*
   |--------------------------------------------------------------------------
@@ -88,6 +261,7 @@ function Registration() {
       toast.error(
         "Please enter your full name."
       );
+
       return false;
     }
 
@@ -95,6 +269,7 @@ function Registration() {
       toast.error(
         "Please enter your email address."
       );
+
       return false;
     }
 
@@ -106,6 +281,7 @@ function Registration() {
       toast.error(
         "Please enter a valid email address."
       );
+
       return false;
     }
 
@@ -113,6 +289,7 @@ function Registration() {
       toast.error(
         "Please enter your phone number."
       );
+
       return false;
     }
 
@@ -122,13 +299,15 @@ function Registration() {
       toast.error(
         "Please enter a valid 10-digit mobile number."
       );
+
       return false;
     }
 
     if (!parish) {
       toast.error(
-        "Please enter your parish."
+        "Please select your parish."
       );
+
       return false;
     }
 
@@ -136,6 +315,7 @@ function Registration() {
       toast.error(
         "Please select your jersey size."
       );
+
       return false;
     }
 
@@ -345,6 +525,10 @@ function Registration() {
               // Clear form
               setForm(initialForm);
 
+              // Clear parish UI
+              setParishSearch("");
+              setParishOpen(false);
+
               // Open secure pass
               navigate(
                 `/pass/${ticketToken}`
@@ -377,6 +561,7 @@ function Registration() {
              * Never immediately ask the user
              * to pay again.
              */
+
             toast.error(
               serverMessage ||
                 "Your payment may have succeeded, but confirmation could not be completed. Please do not pay again immediately."
@@ -520,6 +705,7 @@ function Registration() {
        * Checkout callbacks release
        * loading after Checkout opens.
        */
+
       if (!checkoutOpened) {
         setLoading(false);
       }
@@ -736,9 +922,14 @@ function Registration() {
                   />
                 </div>
 
-                {/* PARISH */}
+                {/* ========================================================
+                    PARISH — SEARCHABLE DROPDOWN
+                ========================================================= */}
 
-                <div>
+                <div
+                  ref={parishRef}
+                  className="relative"
+                >
                   <label
                     htmlFor="parish"
                     className="form-label"
@@ -746,25 +937,242 @@ function Registration() {
                     Parish *
                   </label>
 
-                  <input
+                  {/* SELECT BUTTON */}
+
+                  <button
                     id="parish"
-                    type="text"
-                    name="parish"
-                    value={
-                      form.parish
+                    type="button"
+                    disabled={loading}
+                    onClick={() => {
+                      if (!loading) {
+                        setParishOpen(
+                          (current) =>
+                            !current
+                        );
+
+                        setParishSearch(
+                          ""
+                        );
+                      }
+                    }}
+                    className="
+                      form-control
+                      flex
+                      w-full
+                      items-center
+                      justify-between
+                      gap-3
+                      text-left
+                      disabled:cursor-not-allowed
+                      disabled:opacity-60
+                    "
+                    aria-haspopup="listbox"
+                    aria-expanded={
+                      parishOpen
                     }
-                    onChange={
-                      handleChange
-                    }
-                    disabled={
-                      loading
-                    }
-                    className="form-control disabled:cursor-not-allowed disabled:opacity-60"
-                    placeholder="Your parish"
-                    maxLength={
-                      150
-                    }
-                  />
+                  >
+                    <span
+                      className={
+                        form.parish
+                          ? "truncate text-[var(--brown)]"
+                          : "truncate text-[var(--muted)]"
+                      }
+                    >
+                      {form.parish ||
+                        "Select your parish"}
+                    </span>
+
+                    <ChevronDown
+                      size={17}
+                      className={`
+                        shrink-0
+                        text-[var(--red)]
+                        transition-transform
+                        duration-200
+                        ${
+                          parishOpen
+                            ? "rotate-180"
+                            : ""
+                        }
+                      `}
+                    />
+                  </button>
+
+                  {/* DROPDOWN */}
+
+                  {parishOpen &&
+                    !loading && (
+                      <div
+                        className="
+                          absolute
+                          left-0
+                          right-0
+                          top-full
+                          z-50
+                          mt-2
+                          overflow-hidden
+                          rounded-2xl
+                          border
+                          border-[var(--red)]/20
+                          bg-[var(--cream-light)]
+                          shadow-xl
+                        "
+                      >
+                        {/* SEARCH */}
+
+                        <div className="border-b border-[var(--border)] p-3">
+
+                          <div className="relative">
+
+                            <Search
+                              size={
+                                16
+                              }
+                              className="
+                                pointer-events-none
+                                absolute
+                                left-3
+                                top-1/2
+                                -translate-y-1/2
+                                text-[var(--red)]
+                              "
+                            />
+
+                            <input
+                              type="text"
+                              value={
+                                parishSearch
+                              }
+                              onChange={(
+                                event
+                              ) =>
+                                setParishSearch(
+                                  event
+                                    .target
+                                    .value
+                                )
+                              }
+                              placeholder="Search parish..."
+                              autoFocus
+                              className="
+                                w-full
+                                rounded-xl
+                                border
+                                border-[var(--border)]
+                                bg-[var(--cream)]
+                                py-3
+                                pl-10
+                                pr-3
+                                text-sm
+                                font-semibold
+                                text-[var(--brown)]
+                                outline-none
+                                transition
+                                placeholder:text-[var(--muted)]/70
+                                focus:border-[var(--red)]
+                              "
+                            />
+
+                          </div>
+
+                        </div>
+
+                        {/* PARISH LIST */}
+
+                        <div
+                          className="
+                            max-h-60
+                            overflow-y-auto
+                            p-2
+                          "
+                          role="listbox"
+                        >
+                          {filteredParishes.length >
+                          0 ? (
+                            filteredParishes.map(
+                              (
+                                parish
+                              ) => {
+                                const selected =
+                                  form.parish ===
+                                  parish;
+
+                                return (
+                                  <button
+                                    key={
+                                      parish
+                                    }
+                                    type="button"
+                                    role="option"
+                                    aria-selected={
+                                      selected
+                                    }
+                                    onClick={() =>
+                                      handleParishSelect(
+                                        parish
+                                      )
+                                    }
+                                    className={`
+                                      flex
+                                      w-full
+                                      items-center
+                                      justify-between
+                                      gap-3
+                                      rounded-xl
+                                      px-3
+                                      py-2.5
+                                      text-left
+                                      text-sm
+                                      font-bold
+                                      transition
+                                      ${
+                                        selected
+                                          ? "bg-[var(--red)] text-[var(--cream)]"
+                                          : "text-[var(--brown)] hover:bg-[var(--gold)]/20 hover:text-[var(--red)]"
+                                      }
+                                    `}
+                                  >
+                                    <span>
+                                      {
+                                        parish
+                                      }
+                                    </span>
+
+                                    {selected && (
+                                      <Check
+                                        size={
+                                          15
+                                        }
+                                        className="shrink-0"
+                                      />
+                                    )}
+
+                                  </button>
+                                );
+                              }
+                            )
+                          ) : (
+                            <div className="px-4 py-8 text-center">
+
+                              <Search
+                                size={
+                                  20
+                                }
+                                className="mx-auto text-[var(--muted)]"
+                              />
+
+                              <p className="mt-2 text-xs font-bold text-[var(--muted)]">
+                                No
+                                parish
+                                found.
+                              </p>
+
+                            </div>
+                          )}
+                        </div>
+
+                      </div>
+                    )}
                 </div>
 
                 {/* JERSEY SIZE */}
@@ -822,6 +1230,7 @@ function Registration() {
                     <option value="XXXL">
                       XXXL
                     </option>
+
                   </select>
                 </div>
 

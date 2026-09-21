@@ -220,3 +220,7 @@ button {
     break-inside: avoid;
   }
 }
+
+html {
+  scroll-behavior: smooth;
+}
