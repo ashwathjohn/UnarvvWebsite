@@ -230,7 +230,30 @@ app.use(
   "/api",
   ensureDatabaseConnection
 );
-app.use("/api", apiLimiter);
+
+/*
+|--------------------------------------------------------------------------
+| GLOBAL API RATE LIMITER
+|--------------------------------------------------------------------------
+|
+| Apply the normal API rate limiter to all API requests EXCEPT
+| the Razorpay webhook.
+|
+| Razorpay webhook requests are server-to-server requests and are
+| authenticated using the webhook HMAC signature.
+|
+| Excluding the webhook also prevents legitimate Razorpay retries
+| from being blocked by the normal user-facing API rate limiter.
+|
+*/
+
+app.use("/api", (req, res, next) => {
+  if (req.originalUrl === "/api/payments/webhook") {
+    return next();
+  }
+
+  return apiLimiter(req, res, next);
+});
 
 /*
 |--------------------------------------------------------------------------
