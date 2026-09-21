@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
+
 import connectDB from "./config/db.js";
 
 import registrationRoutes from "./routes/registrationRoutes.js";
@@ -25,20 +26,40 @@ const app = express();
 |--------------------------------------------------------------------------
 */
 
-connectDB().catch(
-  (error) => {
-    console.error(
-      "MongoDB connection failed:",
-      error.message
-    );
-  }
-);
+connectDB().catch((error) => {
+  console.error(
+    "MongoDB connection failed:",
+    error.message
+  );
+});
+
+/*
+|--------------------------------------------------------------------------
+| TRUST PROXY
+|--------------------------------------------------------------------------
+|
+| Vercel runs the Express application behind a proxy.
+| This is also important for rate limiting and secure request handling.
+|
+*/
 
 if (process.env.NODE_ENV === "production") {
   app.set("trust proxy", 1);
 }
 
+/*
+|--------------------------------------------------------------------------
+| SECURITY MIDDLEWARE
+|--------------------------------------------------------------------------
+*/
+
 app.use(helmet());
+
+/*
+|--------------------------------------------------------------------------
+| CORS
+|--------------------------------------------------------------------------
+*/
 
 app.use(
   cors({
@@ -51,6 +72,7 @@ app.use(
       "PUT",
       "PATCH",
       "DELETE",
+      "OPTIONS",
     ],
 
     allowedHeaders: [
@@ -60,7 +82,25 @@ app.use(
   })
 );
 
+/*
+|--------------------------------------------------------------------------
+| COOKIE PARSER
+|--------------------------------------------------------------------------
+*/
+
 app.use(cookieParser());
+
+/*
+|--------------------------------------------------------------------------
+| BODY PARSERS
+|--------------------------------------------------------------------------
+|
+| NOTE:
+| When we implement the Razorpay webhook later, we will need to handle
+| the webhook route carefully so that Razorpay signature verification
+| can use the original/raw request body.
+|
+*/
 
 app.use(
   express.json({
@@ -75,35 +115,113 @@ app.use(
   })
 );
 
-app.use("/api", apiLimiter);
+/*
+|--------------------------------------------------------------------------
+| ROOT HEALTH CHECK
+|--------------------------------------------------------------------------
+|
+| Visiting the Vercel backend URL directly will hit this route.
+|
+*/
 
-// Health check
-app.get("/api/health", (req, res) => {
+app.get("/", (req, res) => {
   res.status(200).json({
     success: true,
-    message: "UNARVV '26 API is running.",
+    service: "UNARVV '26 API",
+    message: "Backend is running successfully.",
+    environment:
+      process.env.NODE_ENV || "development",
   });
 });
 
-// Registration validation
+/*
+|--------------------------------------------------------------------------
+| API HEALTH CHECK
+|--------------------------------------------------------------------------
+*/
+
+app.get("/api/health", (req, res) => {
+  res.status(200).json({
+    success: true,
+    service: "UNARVV '26 API",
+    message: "API is healthy.",
+  });
+});
+
+/*
+|--------------------------------------------------------------------------
+| GLOBAL API RATE LIMITER
+|--------------------------------------------------------------------------
+|
+| Only /api/* requests are rate limited.
+| The root health endpoint remains lightweight.
+|
+*/
+
+app.use("/api", apiLimiter);
+
+/*
+|--------------------------------------------------------------------------
+| REGISTRATION ROUTES
+|--------------------------------------------------------------------------
+*/
+
 app.use(
   "/api/registrations",
   registrationRoutes
 );
 
-// Razorpay payments
+/*
+|--------------------------------------------------------------------------
+| PAYMENT ROUTES
+|--------------------------------------------------------------------------
+*/
+
 app.use(
   "/api/payments",
   paymentRoutes
 );
 
-// Admin
+/*
+|--------------------------------------------------------------------------
+| ADMIN ROUTES
+|--------------------------------------------------------------------------
+*/
+
 app.use(
   "/api/admin",
   adminRoutes
 );
 
+/*
+|--------------------------------------------------------------------------
+| 404 HANDLER
+|--------------------------------------------------------------------------
+|
+| Must remain AFTER all valid routes.
+|
+*/
+
 app.use(notFound);
+
+/*
+|--------------------------------------------------------------------------
+| GLOBAL ERROR HANDLER
+|--------------------------------------------------------------------------
+|
+| Must be the final middleware.
+|
+*/
+
 app.use(errorHandler);
+
+/*
+|--------------------------------------------------------------------------
+| EXPORT APP
+|--------------------------------------------------------------------------
+|
+| Vercel imports the Express application from this file.
+|
+*/
 
 export default app;
