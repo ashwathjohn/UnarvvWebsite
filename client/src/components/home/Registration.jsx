@@ -881,7 +881,7 @@ function Registration() {
                       loading
                     }
                     className="form-control disabled:cursor-not-allowed disabled:opacity-60"
-                    placeholder="you@example.com"
+                    placeholder="Enter Your Email Address"
                     autoComplete="email"
                     maxLength={
                       150

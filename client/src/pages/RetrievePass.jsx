@@ -195,7 +195,7 @@ function RetrievePass() {
                 onChange={handleChange}
                 disabled={loading}
                 className="form-control disabled:cursor-not-allowed disabled:opacity-60"
-                placeholder="you@example.com"
+                placeholder="Enter Your Email Address"
                 autoComplete="email"
               />
             </div>
