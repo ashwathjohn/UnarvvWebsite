@@ -757,12 +757,12 @@ function Registration() {
 
             <div className="mt-8 max-w-md border-t border-[var(--red)]/25 pt-6">
 
-              <p className="text-sm font-semibold text-[var(--brown)]/75">
+              {/* <p className="text-sm font-semibold text-[var(--brown)]/75">
                 Already registered
                 and paid?
-              </p>
+              </p> */}
 
-              <Link
+              {/* <Link
                 to="/retrieve-pass"
                 className="mt-3 inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.12em] text-[var(--red)] transition-opacity hover:opacity-70"
               >
@@ -775,7 +775,7 @@ function Registration() {
                 <ArrowRight
                   size={15}
                 />
-              </Link>
+              </Link> */}
 
             </div>
           </div>
