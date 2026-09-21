@@ -19,6 +19,45 @@ import {
 } from "./middleware/errorMiddleware.js";
 
 const app = express();
+/*
+|--------------------------------------------------------------------------
+| DATABASE CONNECTION MIDDLEWARE
+|--------------------------------------------------------------------------
+|
+| Vercel uses serverless functions.
+|
+| Before an API request reaches a controller that uses MongoDB,
+| we make sure the database connection is ready.
+|
+| connectDB() already reuses an existing connection, so this does not
+| create a new MongoDB connection for every request.
+|
+*/
+
+const ensureDatabaseConnection = async (
+  req,
+  res,
+  next
+) => {
+  try {
+    await connectDB();
+
+    next();
+  } catch (error) {
+    console.error(
+      "MongoDB connection failed:",
+      error
+    );
+
+    return res
+      .status(503)
+      .json({
+        success: false,
+        message:
+          "Database service is temporarily unavailable. Please try again.",
+      });
+  }
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -26,12 +65,12 @@ const app = express();
 |--------------------------------------------------------------------------
 */
 
-connectDB().catch((error) => {
-  console.error(
-    "MongoDB connection failed:",
-    error.message
-  );
-});
+// connectDB().catch((error) => {
+//   console.error(
+//     "MongoDB connection failed:",
+//     error.message
+//   );
+// });
 
 /*
 |--------------------------------------------------------------------------
@@ -158,6 +197,17 @@ app.get("/api/health", (req, res) => {
 |
 */
 
+
+/*
+|--------------------------------------------------------------------------
+| ENSURE DATABASE CONNECTION
+|--------------------------------------------------------------------------
+*/
+
+app.use(
+  "/api",
+  ensureDatabaseConnection
+);
 app.use("/api", apiLimiter);
 
 /*

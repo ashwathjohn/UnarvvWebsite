@@ -256,14 +256,14 @@ function RetrievePass() {
         </div>
 
         {/* Back */}
-        <div className="mt-7 text-center">
+        {/* <div className="mt-7 text-center">
           <Link
             to="/"
             className="text-xs font-black uppercase tracking-[0.12em] text-[var(--red)] hover:underline"
           >
             ← Return to UNARVV '26
           </Link>
-        </div>
+        </div> */}
       </div>
     </main>
         
