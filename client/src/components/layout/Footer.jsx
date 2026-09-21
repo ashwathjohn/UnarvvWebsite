@@ -2,6 +2,8 @@ import {
   ArrowUp,
   CalendarDays,
   MapPin,
+  Phone,
+  Headset,
   Ticket,
 } from "lucide-react";
 
@@ -48,6 +50,7 @@ function Footer() {
               className="group inline-flex items-center gap-3 sm:gap-5"
               aria-label="UNARVV '26 Home"
             >
+
               {/* LOGO */}
 
               <div
@@ -65,7 +68,16 @@ function Footer() {
                 <img
                   src={logo}
                   alt="UNARVV '26 Logo"
-                  className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
+                  className="
+                    h-full
+                    w-full
+                    object-contain
+                    brightness-0
+                    invert
+                    transition-transform
+                    duration-300
+                    group-hover:scale-105
+                  "
                 />
               </div>
 
@@ -79,7 +91,7 @@ function Footer() {
                     uppercase
                     leading-none
                     tracking-[-0.055em]
-                    text-[var(--gold)]
+                    text-white
                     sm:text-4xl
                   "
                 >
@@ -94,7 +106,7 @@ function Footer() {
                     font-black
                     uppercase
                     tracking-[0.16em]
-                    text-[var(--gold)]
+                    text-white
                     sm:text-xs
                     sm:tracking-[0.22em]
                   "
@@ -112,13 +124,13 @@ function Footer() {
                 max-w-xl
                 text-sm
                 leading-7
-                text-white/65
+                text-white
                 sm:text-[15px]
               "
             >
-             UNARVV'26 is an Interdenominational Youth Movement committed to
-awakening a holy, unashamed generation through radicalbiblical truth, fervent
-worship, and genuine community.
+              UNARVV '26 is a youth convention of SMYM Diocese of
+              Belthangady, calling young people to refine, renew, and be
+              reborn through Christ-centred worship, faith, and community.
             </p>
 
             {/* ============================================================
@@ -130,36 +142,115 @@ worship, and genuine community.
                 mt-7
                 flex
                 flex-col
-                gap-3
+                gap-4
                 text-[11px]
                 font-bold
                 uppercase
                 tracking-[0.07em]
-                text-white/75
-                sm:flex-row
-                sm:flex-wrap
-                sm:gap-x-7
+                text-white/80
                 sm:text-xs
                 sm:tracking-[0.08em]
               "
             >
-              <span className="flex items-center gap-2">
-                <CalendarDays
-                  size={16}
-                  className="shrink-0 text-[var(--gold)]"
-                />
 
-                17–18 October 2026
-              </span>
+              {/* DATE & VENUE */}
 
-              <span className="flex items-center gap-2">
-                <MapPin
-                  size={16}
-                  className="shrink-0 text-[var(--gold)]"
-                />
+              <div
+                className="
+                  flex
+                  flex-col
+                  gap-3
+                  sm:flex-row
+                  sm:flex-wrap
+                  sm:gap-x-7
+                "
+              >
+                <span className="flex items-center gap-2">
+                  <CalendarDays
+                    size={16}
+                    className="shrink-0 text-[var(--gold)]"
+                  />
 
-                St. Francis School, Kokkada
-              </span>
+                  17–18 October 2026
+                </span>
+
+                <span className="flex items-center gap-2">
+                  <MapPin
+                    size={16}
+                    className="shrink-0 text-[var(--gold)]"
+                  />
+
+                  St. Francis School, Kokkada
+                </span>
+              </div>
+
+              {/* CONTACT DETAILS */}
+
+              <div
+                className="
+                  flex
+                  flex-col
+                  gap-3
+                  sm:flex-row
+                  sm:flex-wrap
+                  sm:gap-x-7
+                "
+              >
+
+                {/* TECHNICAL ENQUIRY */}
+
+                <a
+                  href="tel:+917676144495"
+                  className="
+                    flex
+                    w-fit
+                    items-center
+                    gap-2
+                    transition-colors
+                    duration-200
+                    hover:text-[var(--gold)]
+                  "
+                >
+                  <Headset
+                    size={16}
+                    className="shrink-0 text-[var(--gold)]"
+                  />
+
+                  <span>
+                    Technical Enquiry:{" "}
+                    <span className="text-white">
+                      7676144495
+                    </span>
+                  </span>
+                </a>
+
+                {/* GENERAL ENQUIRY */}
+
+                <a
+                  href="tel:+918197828869"
+                  className="
+                    flex
+                    w-fit
+                    items-center
+                    gap-2
+                    transition-colors
+                    duration-200
+                    hover:text-[var(--gold)]
+                  "
+                >
+                  <Phone
+                    size={16}
+                    className="shrink-0 text-[var(--gold)]"
+                  />
+
+                  <span>
+                    General Enquiry:{" "}
+                    <span className="text-white">
+                      8197828869
+                    </span>
+                  </span>
+                </a>
+              </div>
             </div>
           </div>
 
@@ -174,6 +265,7 @@ worship, and genuine community.
               lg:justify-self-end
             "
           >
+
             {/* HEADING */}
 
             <p
@@ -223,13 +315,6 @@ worship, and genuine community.
                 Experience
               </a>
 
-              {/* <a
-                href="#schedule"
-                className="w-fit transition-colors duration-200 hover:text-[var(--gold)]"
-              >
-                Schedule
-              </a> */}
-
               <a
                 href="#faq"
                 className="w-fit transition-colors duration-200 hover:text-[var(--gold)]"
@@ -261,6 +346,7 @@ worship, and genuine community.
                 duration-300
                 hover:-translate-y-1
                 hover:bg-red-900
+                hover:text-white
                 sm:min-w-[190px]
               "
             >
@@ -296,10 +382,12 @@ worship, and genuine community.
             sm:tracking-[0.12em]
           "
         >
+
           {/* COPYRIGHT */}
 
           <p className="leading-5">
             © 2026 Syro Malabar Youth Movement
+
             <span className="hidden sm:inline">
               {" "}
               • Diocese of Belthangady
