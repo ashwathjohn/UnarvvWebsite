@@ -260,7 +260,7 @@ worship, and genuine community.
                 transition
                 duration-300
                 hover:-translate-y-1
-                hover:bg-white
+                hover:bg-red-900
                 sm:min-w-[190px]
               "
             >

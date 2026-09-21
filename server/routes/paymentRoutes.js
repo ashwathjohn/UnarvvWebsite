@@ -3,22 +3,51 @@ import express from "express";
 import {
   createPaymentOrder,
   verifyPayment,
+  razorpayWebhook,
 } from "../controllers/paymentController.js";
 
 import {
   registrationLimiter,
 } from "../middleware/rateLimiter.js";
 
-const router = express.Router();
+const router =
+  express.Router();
 
-// Create Razorpay order
+/*
+|--------------------------------------------------------------------------
+| RAZORPAY WEBHOOK
+|--------------------------------------------------------------------------
+|
+| Do NOT use registrationLimiter here.
+|
+| Razorpay, not the participant's browser,
+| calls this endpoint.
+|
+*/
+
+router.post(
+  "/webhook",
+  razorpayWebhook
+);
+
+/*
+|--------------------------------------------------------------------------
+| CREATE RAZORPAY ORDER
+|--------------------------------------------------------------------------
+*/
+
 router.post(
   "/create-order",
   registrationLimiter,
   createPaymentOrder
 );
 
-// Verify successful Razorpay payment
+/*
+|--------------------------------------------------------------------------
+| VERIFY CHECKOUT PAYMENT
+|--------------------------------------------------------------------------
+*/
+
 router.post(
   "/verify",
   registrationLimiter,

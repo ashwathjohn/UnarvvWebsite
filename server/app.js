@@ -144,6 +144,28 @@ app.use(cookieParser());
 app.use(
   express.json({
     limit: "20kb",
+
+    verify: (
+      req,
+      res,
+      buffer
+    ) => {
+      /*
+       * Preserve the ORIGINAL request body
+       * only for Razorpay webhook requests.
+       *
+       * Razorpay webhook HMAC verification
+       * must use these original bytes.
+       */
+
+      if (
+        req.originalUrl ===
+        "/api/payments/webhook"
+      ) {
+        req.rawBody =
+          Buffer.from(buffer);
+      }
+    },
   })
 );
 
