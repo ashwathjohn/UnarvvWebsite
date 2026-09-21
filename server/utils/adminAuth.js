@@ -26,35 +26,62 @@ export const createAdminToken = (adminId) => {
 
 /*
 |--------------------------------------------------------------------------
-| ADMIN COOKIE OPTIONS
+| PRODUCTION CHECK
 |--------------------------------------------------------------------------
 */
 
+const isProduction = () =>
+  process.env.NODE_ENV === "production";
+
+/*
+|--------------------------------------------------------------------------
+| ADMIN COOKIE OPTIONS
+|--------------------------------------------------------------------------
+|
+| Development:
+|   localhost frontend -> localhost backend
+|   SameSite=Lax
+|   Secure=false
+|
+| Production:
+|   Vercel frontend -> separate Vercel backend
+|   SameSite=None
+|   Secure=true
+|
+*/
+
 export const getAdminCookieOptions = () => {
-  const isProduction =
-    process.env.NODE_ENV === "production";
+  const production = isProduction();
 
   return {
+    /*
+     * Prevent JavaScript in the browser from
+     * accessing the authentication token.
+     */
     httpOnly: true,
 
     /*
-     * HTTPS only in production.
-     * localhost can use HTTP.
+     * Production is HTTPS, so the cookie should
+     * only travel over secure connections.
      */
-    secure: isProduction,
+    secure: production,
 
     /*
-     * Works for our current same-site setup.
+     * Required for our separate frontend/backend
+     * production origins.
      */
-    sameSite: "lax",
+    sameSite: production
+      ? "none"
+      : "lax",
 
     /*
-     * Cookie is only needed by API routes.
+     * Allow the cookie for all API routes.
      */
     path: "/",
 
     /*
-     * Match JWT lifetime.
+     * Keep cookie lifetime aligned with
+     * the 8-hour JWT lifetime.
      */
     maxAge: 8 * 60 * 60 * 1000,
   };
@@ -64,18 +91,25 @@ export const getAdminCookieOptions = () => {
 |--------------------------------------------------------------------------
 | COOKIE CLEAR OPTIONS
 |--------------------------------------------------------------------------
+|
+| IMPORTANT:
+| Cookie clearing must use the same relevant
+| attributes as the cookie that was created.
+|
 */
 
-export const getAdminClearCookieOptions =
-  () => {
-    const isProduction =
-      process.env.NODE_ENV ===
-      "production";
+export const getAdminClearCookieOptions = () => {
+  const production = isProduction();
 
-    return {
-      httpOnly: true,
-      secure: isProduction,
-      sameSite: "lax",
-      path: "/",
-    };
+  return {
+    httpOnly: true,
+
+    secure: production,
+
+    sameSite: production
+      ? "none"
+      : "lax",
+
+    path: "/",
   };
+};
