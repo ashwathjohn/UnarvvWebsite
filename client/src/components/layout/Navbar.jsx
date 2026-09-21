@@ -12,7 +12,7 @@ import logo from "../../assets/unarvv-logo.png";
 const links = [
   { label: "About", href: "/#about" },
   { label: "Experience", href: "/#experience" },
-  { label: "Schedule", href: "/#schedule" },
+  // { label: "Schedule", href: "/#schedule" },
   { label: "FAQ", href: "/#faq" },
 ];
 

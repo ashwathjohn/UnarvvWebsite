@@ -223,12 +223,12 @@ worship, and genuine community.
                 Experience
               </a>
 
-              <a
+              {/* <a
                 href="#schedule"
                 className="w-fit transition-colors duration-200 hover:text-[var(--gold)]"
               >
                 Schedule
-              </a>
+              </a> */}
 
               <a
                 href="#faq"

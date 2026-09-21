@@ -21,7 +21,7 @@ function Home() {
         <Highlights />
         <Vision />
         <Experience />
-        <Schedule />
+        {/* <Schedule /> */}
         <Registration />
         <FAQ />
       </main>

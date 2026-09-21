@@ -22,7 +22,7 @@ function Vision() {
       <div className="container-custom">
         <div className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
           <div>
-            <span className="small-label">01 / About the Convention</span>
+            <span className="small-label"> / About the Convention</span>
 
             <h2 className="mt-5 text-5xl font-black uppercase leading-[0.9] tracking-[-0.055em] text-[var(--red)] sm:text-6xl lg:text-7xl">
               This is

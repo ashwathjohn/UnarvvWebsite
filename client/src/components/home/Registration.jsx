@@ -727,7 +727,7 @@ function Registration() {
 
           <div>
             <span className="text-xs font-black uppercase tracking-[0.18em] text-[var(--red)]">
-              04 / Registration
+             / Registration
             </span>
 
             <h2 className="mt-5 text-5xl font-black uppercase leading-[0.88] tracking-[-0.06em] text-[var(--red)] sm:text-6xl lg:text-7xl">

@@ -50,7 +50,7 @@ function Experience() {
         <div className="grid gap-8 md:grid-cols-2 md:items-end">
           <div>
             <span className="text-xs font-black uppercase tracking-[0.18em] text-[var(--gold)]">
-              02 / The Experience
+              / The Experience
             </span>
 
             <h2 className="mt-5 text-5xl font-black uppercase leading-[0.9] tracking-[-0.06em] sm:text-6xl lg:text-7xl">

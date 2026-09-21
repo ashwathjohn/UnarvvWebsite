@@ -38,7 +38,7 @@ function FAQ() {
       <div className="container-custom">
         <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr]">
           <div>
-            <span className="small-label">05 / Need to Know</span>
+            <span className="small-label">/ Need to Know</span>
 
             <h2 className="mt-5 text-5xl font-black uppercase leading-[0.9] tracking-[-0.055em] text-[var(--red)] sm:text-6xl">
               Questions?
