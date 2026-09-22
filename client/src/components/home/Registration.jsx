@@ -848,7 +848,7 @@ function Registration() {
                       loading
                     }
                     className="form-control disabled:cursor-not-allowed disabled:opacity-60"
-                    placeholder="Enter your full name"
+                    placeholder="Enter Your Full Name"
                     autoComplete="name"
                     maxLength={
                       100
