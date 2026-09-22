@@ -386,7 +386,7 @@ function Footer() {
 
          {/* COPYRIGHT */}
 
-<div className="flex items-center gap-3 sm:gap-4">
+<div className="flex items-center gap-1 sm:gap-1">
   <img
     src={smymLogo}
     alt="SMYM Logo"

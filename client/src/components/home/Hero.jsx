@@ -172,24 +172,24 @@ function Hero() {
       max-w-full
       items-center
       justify-center
-      gap-2.5
+      gap-0.5
       rounded-full
       border
       border-[rgba(151,29,32,0.22)]
       bg-[rgba(151,29,32,0.06)]
-      px-4
+      px-3
       py-2.5
       text-center
       font-black
       uppercase
       text-[var(--red)]
 
-      sm:gap-3
-      sm:px-6
+      sm:gap-1
+      sm:px-5
       sm:py-3
 
-      lg:gap-4
-      lg:px-8
+      lg:gap-1
+      lg:px-7
       lg:py-3
     "
   >
@@ -231,31 +231,24 @@ function Hero() {
 
     <span
       className="
-        max-w-[230px]
-        text-[7px]
-        leading-[1.45]
-        tracking-[0.08em]
+        whitespace-nowrap
+        text-[clamp(5.5px,1.75vw,11px)]
+        leading-none
+        tracking-[0.04em]
 
-        min-[400px]:max-w-[270px]
-        min-[400px]:text-[8px]
-
-        sm:max-w-none
-        sm:whitespace-nowrap
         sm:text-[9px]
-        sm:leading-normal
-        sm:tracking-[0.14em]
+        sm:tracking-[0.1em]
 
         md:text-[10px]
 
         lg:text-[11px]
-        lg:tracking-[0.16em]
+        lg:tracking-[0.14em]
       "
     >
       Syro Malabar Youth Movement • Diocese of Belthangady
     </span>
   </div>
 </div>
-
           {/* ============================================================
               UNARVV LOGO
           ============================================================= */}
