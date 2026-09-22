@@ -8,6 +8,7 @@ import {
 import gsap from "gsap";
 
 import logo from "../../assets/unarvv-logo.png";
+import smymLogo from "../../assets/smym-logo.png";
 
 function Hero() {
   const heroRef = useRef(null);
@@ -156,53 +157,107 @@ function Hero() {
         <div className="mx-auto max-w-5xl text-center">
 
           {/* ============================================================
-              EVENT BADGE
+              SMYM LOGO
           ============================================================= */}
 
-          <div className="hero-reveal mb-8 flex justify-center">
-            <div
-              className="
-                inline-flex
-                max-w-full
-                items-center
-                justify-center
-                gap-2
-                rounded-full
-                border
-                border-[rgba(151,29,32,0.22)]
-                bg-[rgba(151,29,32,0.06)]
-                px-4
-                py-2
-                text-center
-                text-[8px]
-                font-black
-                uppercase
-                tracking-[0.11em]
-                text-[var(--red)]
-                sm:px-6
-                sm:text-[9px]
-                sm:tracking-[0.16em]
-                lg:text-[10px]
-              "
-            >
-              <span
-                className="
-                  h-1.5
-                  w-1.5
-                  shrink-0
-                  rounded-full
-                  bg-[var(--gold)]
-                "
-              />
+{/* ============================================================
+    EVENT BADGE
+============================================================= */}
 
-              <span>
-                Syro Malabar Youth Movement • Diocese of Belthangady
-              </span>
-            </div>
-          </div>
+<div className="hero-reveal mb-8 flex w-full justify-center">
+  <div
+    className="
+      flex
+      w-fit
+      max-w-full
+      items-center
+      justify-center
+      gap-2.5
+      rounded-full
+      border
+      border-[rgba(151,29,32,0.22)]
+      bg-[rgba(151,29,32,0.06)]
+      px-4
+      py-2.5
+      text-center
+      font-black
+      uppercase
+      text-[var(--red)]
+
+      sm:gap-3
+      sm:px-6
+      sm:py-3
+
+      lg:gap-4
+      lg:px-8
+      lg:py-3
+    "
+  >
+    {/* SMYM LOGO */}
+
+    <img
+      src={smymLogo}
+      alt="SMYM Logo"
+      className="
+        h-[44px]
+        w-[44px]
+        shrink-0
+        object-contain
+
+        sm:h-[52px]
+        sm:w-[52px]
+
+        lg:h-[60px]
+        lg:w-[60px]
+      "
+    />
+
+    {/* GOLD DOT */}
+
+    <span
+      className="
+        h-1.5
+        w-1.5
+        shrink-0
+        rounded-full
+        bg-[var(--gold)]
+
+        sm:h-2
+        sm:w-2
+      "
+    />
+
+    {/* ORGANISATION NAME */}
+
+    <span
+      className="
+        max-w-[230px]
+        text-[7px]
+        leading-[1.45]
+        tracking-[0.08em]
+
+        min-[400px]:max-w-[270px]
+        min-[400px]:text-[8px]
+
+        sm:max-w-none
+        sm:whitespace-nowrap
+        sm:text-[9px]
+        sm:leading-normal
+        sm:tracking-[0.14em]
+
+        md:text-[10px]
+
+        lg:text-[11px]
+        lg:tracking-[0.16em]
+      "
+    >
+      Syro Malabar Youth Movement • Diocese of Belthangady
+    </span>
+  </div>
+</div>
 
           {/* ============================================================
-              LOGO
+              UNARVV LOGO
           ============================================================= */}
 
           <div className="hero-reveal mb-5 flex justify-center sm:mb-6">

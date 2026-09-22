@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 
 import logo from "../../assets/unarvv-logo.png";
+import smymLogo from "../../assets/smym-logo.png";
 
 function Footer() {
   return (
@@ -383,20 +384,37 @@ function Footer() {
           "
         >
 
-          {/* COPYRIGHT */}
+         {/* COPYRIGHT */}
 
-          <p className="leading-5">
-            © 2026 Syro Malabar Youth Movement
+<div className="flex items-center gap-3 sm:gap-4">
+  <img
+    src={smymLogo}
+    alt="SMYM Logo"
+    className="
+      h-[52px]
+      w-[52px]
+      shrink-0
+      object-contain
+      sm:h-[64px]
+      sm:w-[64px]
+      lg:h-[72px]
+      lg:w-[72px]
+    "
+  />
 
-            <span className="hidden sm:inline">
-              {" "}
-              • Diocese of Belthangady
-            </span>
+  <p className="leading-5">
+    © 2026 Syro Malabar Youth Movement
 
-            <span className="block sm:hidden">
-              Diocese of Belthangady
-            </span>
-          </p>
+    <span className="hidden sm:inline">
+      {" "}
+      • Diocese of Belthangady
+    </span>
+
+    <span className="block sm:hidden">
+      Diocese of Belthangady
+    </span>
+  </p>
+</div>
 
           {/* BACK TO TOP */}
 
