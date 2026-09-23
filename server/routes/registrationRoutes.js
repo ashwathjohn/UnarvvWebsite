@@ -3,7 +3,6 @@ import express from "express";
 import {
   validateRegistration,
   getPassByToken,
-  retrievePass,
 } from "../controllers/registrationController.js";
 
 import {
@@ -13,7 +12,6 @@ import {
 
 import {
   registrationLimiter,
-  passRecoveryLimiter,
   passOtpRequestLimiter,
   passOtpVerifyLimiter,
 } from "../middleware/rateLimiter.js";
@@ -32,24 +30,6 @@ router.post(
   "/validate",
   registrationLimiter,
   validateRegistration
-);
-
-
-/*
-|--------------------------------------------------------------------------
-| Existing pass recovery
-|--------------------------------------------------------------------------
-| TEMPORARILY KEPT
-|
-| We will remove this only after the Email OTP system has been
-| fully tested locally and in production.
-|--------------------------------------------------------------------------
-*/
-
-router.post(
-  "/retrieve-pass",
-  passRecoveryLimiter,
-  retrievePass
 );
 
 
