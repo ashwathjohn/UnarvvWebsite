@@ -78,3 +78,44 @@ export const adminLoginLimiter = rateLimit({
       "Too many login attempts. Please try again later.",
   },
 });
+
+
+
+export const passOtpRequestLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+
+  limit: 5,
+
+  standardHeaders: "draft-7",
+
+  legacyHeaders: false,
+
+  message: {
+    success: false,
+    message:
+      "Too many verification code requests. Please try again later.",
+  },
+});
+
+
+// ============================================================
+// OTP VERIFY LIMITER
+// Maximum 15 verification requests from one IP every 15 minutes
+// Individual OTP also has its own 5-attempt limit
+// ============================================================
+
+export const passOtpVerifyLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+
+  limit: 15,
+
+  standardHeaders: "draft-7",
+
+  legacyHeaders: false,
+
+  message: {
+    success: false,
+    message:
+      "Too many verification attempts. Please try again later.",
+  },
+});
