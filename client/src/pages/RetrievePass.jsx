@@ -64,9 +64,9 @@ function RetrievePass() {
         );
       }
 
-      toast.success(
-        "Verification code sent to your email."
-      );
+    toast.success(
+  "If registered, a verification code has been sent."
+);
 
       setStep("otp");
 
@@ -353,7 +353,7 @@ function RetrievePass() {
                   <div>
 
                     <span className="block text-[10px] font-black uppercase tracking-[0.12em] text-[var(--muted)]">
-                      Code sent to
+                      Check for a code at
                     </span>
 
                     <span className="mt-1 block break-all text-sm font-bold text-[var(--red)]">
