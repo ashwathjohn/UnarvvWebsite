@@ -6,6 +6,7 @@ import Experience from "../components/home/Experience";
 import Schedule from "../components/home/Schedule";
 import Registration from "../components/home/Registration";
 import FAQ from "../components/home/FAQ";
+import RegistrationDeadline from "../components/home/RegistrationDeadline";
 
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
@@ -18,6 +19,7 @@ function Home() {
 
       <main>
         <Hero />
+         <RegistrationDeadline />
         <Highlights />
         <Vision />
         <Experience />

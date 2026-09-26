@@ -3,19 +3,19 @@ import { Minus, Plus } from "lucide-react";
 
 const faqs = [
   {
-    question: "When is UNARVV '26?",
+    question: "When and Where is UNARVV '26?",
     answer:
-      "UNARVV '26 will be held on 17 and 18 October 2026.",
+      "UNARVV '26 will be held on 17 and 18 October 2026 at St. Francis School, Kokkada.",
   },
   {
-    question: "Where is the convention happening?",
+    question:  "Is spot registration available?",
     answer:
-      "The convention will be held at St. Francis School, Kokkada.",
+       "No. Spot registration will not be available for UNARVV '26. Participants must complete their registration online before the registration deadline on October 5.",
   },
   {
-    question: "What is the registration fee?",
+    question: "Is accommodation available?",
     answer:
-      "The convention registration fee is ₹300 per participant.",
+     "Yes. Accommodation will be provided for registered participants during UNARVV '26.",
   },
   {
     question: "What should I provide while registering?",
@@ -25,7 +25,7 @@ const faqs = [
   {
     question: "How will I receive my pass?",
     answer:
-      "After successful payment verification, your convention pass will be generated and you get your pass by entering email and phone no in My Pass section.",
+       "After successful payment, your convention pass will be generated automatically. You can access it anytime from the My Pass section by entering your registered email and verifying the OTP sent to your email.",
   },
 
 ];
