@@ -181,14 +181,14 @@ function Navbar() {
 
           {/* NEW REGISTRATION */}
 
-          <a
+          {/* <a
             href="/#register"
             className="primary-button whitespace-nowrap"
           >
             <Ticket size={16} />
 
             Get Tickets
-          </a>
+          </a> */}
 
         </div>
 
@@ -264,7 +264,7 @@ function Navbar() {
               GET TICKETS
           ============================================================= */}
 
-          <a
+          {/* <a
             href="/#register"
             onClick={closeMenu}
             className="primary-button mt-3"
@@ -272,7 +272,7 @@ function Navbar() {
             <Ticket size={17} />
 
             Get Tickets
-          </a>
+          </a> */}
 
         </div>
       </div>

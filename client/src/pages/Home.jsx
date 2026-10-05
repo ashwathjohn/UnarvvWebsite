@@ -19,12 +19,12 @@ function Home() {
 
       <main>
         <Hero />
-         <RegistrationDeadline />
+         {/* <RegistrationDeadline /> */}
         <Highlights />
         <Vision />
         <Experience />
         {/* <Schedule /> */}
-        <Registration />
+        {/* <Registration /> */}
         <FAQ />
       </main>
 

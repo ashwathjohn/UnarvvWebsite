@@ -49,7 +49,7 @@ function AnnouncementBar() {
               lg:text-[11px]
             "
           >
-            Registration Live
+            Registration Closed
           </div>
 
           {/* Main Announcement */}
@@ -77,11 +77,11 @@ function AnnouncementBar() {
 
             <span>
               <span className="hidden sm:inline">
-               Registrations Open!
+               Registrations Closed
               </span>
 
               <span className="sm:hidden">
-                Registrations Open!
+                Registrations Closed
               </span>
             </span>
           </div>

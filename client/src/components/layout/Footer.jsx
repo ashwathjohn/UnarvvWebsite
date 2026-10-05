@@ -326,7 +326,7 @@ function Footer() {
 
             {/* GET TICKETS */}
 
-            <a
+            {/* <a
               href="#register"
               className="
                 mt-8
@@ -354,7 +354,7 @@ function Footer() {
               <Ticket size={16} />
 
               Get Tickets
-            </a>
+            </a> */}
           </div>
         </div>
 
