@@ -472,14 +472,14 @@ function Hero() {
               sm:flex-row
             "
           >
-             {/* <a
+            <a
               href="#register"
               className="primary-button"
             >
               Claim Your Pass
 
               <ArrowUpRight size={17} />
-            </a>  */}
+            </a> 
 
             <a
               href="#about"
