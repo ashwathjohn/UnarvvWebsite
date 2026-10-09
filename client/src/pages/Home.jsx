@@ -24,7 +24,7 @@ function Home() {
         <Vision />
         <Experience />
         {/* <Schedule /> */}
-       {/* <Registration /> */}
+        <Registration /> 
         <FAQ />
       </main>
 
